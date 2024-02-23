@@ -1,0 +1,10 @@
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #b3ffb3; /* Green */
+    margin-bottom: 10px;
+}
+
+.progress-bar.near-limit {
+    background-color: #ff9999; /* Red */
+}

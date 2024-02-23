@@ -1,7 +1,20 @@
 $(function() {
+
+    function updateProgressBar(total, limit) {
+        var percentage = (total / limit) * 100;
+        $('#progress').css('width', percentage + '%');
+        if (percentage >= 100) {
+            $('#progress').addClass('exceeded-limit');
+        } else {
+            $('#progress').removeClass('exceeded-limit');
+        }
+    }
+
+
     chrome.storage.sync.get(['total', 'limit'], function(budget) {
         $('#total').text(budget.total);
         $('#limit').text(budget.limit);
+        updateProgressBar(budget.total || 0, budget.limit || 100);
     });
 
     $('#spendAmount').click(function() {
@@ -26,8 +39,11 @@ $(function() {
                         message: "Uh oh! Looks like you've reached your limit!"
                     };
 
-                    chrome.notifications.create('limitNotify', notify);
+                    chrome.notifications.create('limitNotif' + Date.now().toString(), notify);
                 }
+
+                $('#total').text(newTotal);
+                updateProgressBar(newTotal, budget.limit || 100);
             });
 
             $('#total').text(newTotal);
