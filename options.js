@@ -21,7 +21,21 @@ $(function()
     {
         chrome.storage.sync.set({'total' : 0}, function()
         {
-            close() ;
+                var notify =
+                {
+                    type : "basic" ,
+                    iconUrl  : "icon48.png" ,
+                    title : "Total Reset !" ,
+                    message : "The total has been reset to 0!"
+                } ;
+
+                chrome.notifications.create('resetNotify' , notify, function()
+                {
+                    close() ;
+                }) ;
+
+               
+            
         });
     });
 
