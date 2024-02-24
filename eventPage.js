@@ -47,12 +47,6 @@ chrome.contextMenus.onClicked.addListener(function(clickData)
     }
 }) ;
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    if (message.totalReset) {
-        console.log("Message received in event page");
-        chrome.action.setBadgeText({ text: '0' });
-    }
-});
 
 
 

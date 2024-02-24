@@ -31,9 +31,7 @@ $(function()
 
                 chrome.notifications.create('limitNotif' + Date.now().toString(), notify, function()
                 {
-                    chrome.runtime.sendMessage({ totalReset: true });
-                    console.log("Message sent from options page");
-                    
+                   
                     close() ;
                 }) ;
 
